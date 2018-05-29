@@ -1,0 +1,24 @@
+{
+    "name": "mickaelandrieu/ps-products",
+    "description": "A module to customize products page in PrestaShop Day Paris 2018",
+    "type": "prestashop-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mickaël Andrieu",
+            "email": "mickael.andrieu@prestashop.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PsDay\\": "src/"
+        },
+        "exclude-from-classmap": []
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
