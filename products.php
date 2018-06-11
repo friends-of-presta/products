@@ -118,7 +118,6 @@ class Products extends Module
 
     /**
      * Add the field "alternative_description to Product table.
-     * @return string|void
      */
     public function hookActionDispatcherBefore()
     {
@@ -153,6 +152,7 @@ class Products extends Module
     /**
      * Manage the information in a specific tab of Product Page.
      * @param type $hookParams
+     * @return string
      */
     public function hookDisplayAdminProductsExtra(&$hookParams)
     {
