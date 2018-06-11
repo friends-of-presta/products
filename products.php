@@ -65,9 +65,9 @@ class Products extends Module
     public function install()
     {
         return parent::install()
+            && AlternativeDescription::addToProductTable()
             && $this->registerHook($this->productHooks)
             && $this->registerHook('actionAdminControllerSetMedia')
-            && AlternativeDescription::addToProductTable()
         ;
     }
 
@@ -79,9 +79,9 @@ class Products extends Module
     public function uninstall()
     {
         return parent::uninstall()
+            && AlternativeDescription::removeToProductTable()
             && $this->unregisterHook($this->productHooks)
             && $this->unregisterHook('actionAdminControllerSetMedia')
-            && AlternativeDescription::removeToProductTable()
         ;
     }
 
@@ -123,6 +123,19 @@ class Products extends Module
     public function hookActionDispatcherBefore()
     {
         AlternativeDescription::addToProductDefinition();
+    }
+
+    /**
+     * Manage the list of fields available in the Product Catalog page.
+     * @param type $hookParams
+     */
+    public function hookActionAdminProductsListingFieldsModifier(&$hookParams)
+    {
+        $hookParams['sql_select']['alternative_description'] = [
+            'table' => 'p',
+            'field' => 'alternative_description',
+            'filtering' => "LIKE '%%%s%%'",
+        ];
     }
 
     /**

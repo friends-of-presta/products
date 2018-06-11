@@ -21,6 +21,11 @@
         <td>
             <a href="{{ product.url|default('') }}#tab-step1">{{ product.image|raw }}</a>
         </td>
+        <td class="text-center">
+            {% set action = product.alternative_description is empty ? 'disabled' : 'enabled' %}
+            {% set icon = action == 'disabled' ? 'clear' : 'check' %}
+            <i class="material-icons action-{{ action }}">{{ icon }}</i>
+        </td>
         <td>
             {{ product.reference|default('') }}
         </td>
