@@ -2,6 +2,10 @@
 
 A PrestaShop module to demonstrate all the available customizations in Product pages.
 
+## Screenshots
+
+![product_catalog_page](https://user-images.githubusercontent.com/1247388/41238053-5811dace-6d95-11e8-89f9-a85698a93422.png)
+
 ## Requirements
 
 You need a Shop with PrestaShop 1.7.4+ and PHP 7.1 at least.
