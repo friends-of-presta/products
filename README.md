@@ -27,7 +27,7 @@ We'll see also how to manage the available fields and following data to make it 
 in templates. We'll add a new field to product page called "alternative_description" and make it
 available in the catalog view.
 
-# Product Page
+### Product Page
 
 We need to make the new field "alternative_description" available in Product Page.
 We'll discover all the templates of Product page and how to choice which one should
