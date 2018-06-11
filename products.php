@@ -103,7 +103,8 @@ class Products extends Module
      * @param type $hookParams
      * @return string
      */
-    public function hookDisplayAdminProductsMainStepLeftColumnMiddle($hookParams) {
+    public function hookDisplayAdminProductsMainStepLeftColumnMiddle($hookParams)
+    {
         $productId = $hookParams['id_product'];
         $formFactory = $this->get('form.factory');
         $twig = $this->get('twig');
@@ -166,13 +167,14 @@ class Products extends Module
      * @param string $arguments the function arguments if any.
      * @return string|void
      */
-    public function __call($name, $arguments = null) {
+    public function __call($name, $arguments = null)
+    {
         if ($name == 'hookDisplayOverrideTemplate') {
             return;
         }
 
         $this->context->smarty->assign('name', $name);
 
-        return $this->display(__FILE__ , 'views/templates/hook_block.tpl');
+        return $this->display(__FILE__, 'views/templates/hook_block.tpl');
     }
 }
