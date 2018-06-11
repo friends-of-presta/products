@@ -14,11 +14,18 @@ A PrestaShop module to demonstrate all the available customizations in Product p
 
 ## Requirements
 
-You need a Shop with PrestaShop 1.7.4+ and PHP 7.1 at least.
+You need a Shop with PrestaShop 1.7.4+, Composer and PHP 7.1 at least.
 
 ## Installation
 
 Get the module here and move it into the `modules` folder of your Shop.
+
+Then, you need to install the vendors of the module:
+
+``
+cd modules/products && composer install
+``
+
 Then install it using the command line:
 
 ``
