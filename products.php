@@ -146,6 +146,7 @@ class Products extends Module
     {
         $hookParams['products'] = ProductsCollection::make($hookParams['products'])
             ->sortBy('alternative_description')
+            ->all()
         ;
     }
 
