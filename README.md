@@ -4,7 +4,12 @@ A PrestaShop module to demonstrate all the available customizations in Product p
 
 ## Screenshots
 
+#### Product Catalog Page
+
 ![product_catalog_page](https://user-images.githubusercontent.com/1247388/41238053-5811dace-6d95-11e8-89f9-a85698a93422.png)
+
+#### Product Page
+
 ![product_page](https://user-images.githubusercontent.com/1247388/41245569-a582b838-6da8-11e8-890c-3aeeffc325bf.png)
 
 ## Requirements
