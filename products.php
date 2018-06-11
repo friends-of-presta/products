@@ -28,6 +28,7 @@ require_once __DIR__.'/vendor/autoload.php';
 
 use PsDay\Hooks as ProductHooks;
 use PsDay\AlternativeDescription;
+use PsDay\ProductsCollection;
 
 /**
  * Module to present how Prestashop developers
@@ -54,7 +55,6 @@ class Products extends Module
         ];
 
         $this->productHooks = array_merge(ProductHooks::PRODUCT_LIST_HOOKS, ProductHooks::PRODUCT_FORM_HOOKS);
-        dump($this->productHooks);
     }
 
     /**
@@ -126,7 +126,7 @@ class Products extends Module
     }
 
     /**
-     * Manage the list of fields available in the Product Catalog page.
+     * Manage the list of product fields available in the Product Catalog page.
      * @param type $hookParams
      */
     public function hookActionAdminProductsListingFieldsModifier(&$hookParams)
@@ -136,6 +136,17 @@ class Products extends Module
             'field' => 'alternative_description',
             'filtering' => "LIKE '%%%s%%'",
         ];
+    }
+
+    /**
+     * Manage the list of products available in the Product Catalog page.
+     * @param type $hookParams
+     */
+    public function hookActionAdminProductsListingResultsModifier(&$hookParams)
+    {
+        $hookParams['products'] = ProductsCollection::make($hookParams['products'])
+            ->sortBy('alternative_description')
+        ;
     }
 
     /**
