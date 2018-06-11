@@ -7,7 +7,7 @@ use Product;
 use Twig\Environment;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * A a new field "alternative_description" to Product Page
@@ -61,7 +61,7 @@ class AlternativeDescription
         $product = new Product($productId);
 
         return $formFactory
-            ->createNamedBuilder('alternative_description', TextType::class, $product->alternative_description)
+            ->createNamedBuilder('alternative_description', TextareaType::class, $product->alternative_description)
             ->getForm()
         ;
     }

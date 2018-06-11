@@ -113,7 +113,7 @@ class Products extends Module
 
         // You don't need to design your form, call only form_row(my_field) in
         // your template.
-        AlternativeDescription::setTemplateToProductPage($twig, $form);
+        return AlternativeDescription::setTemplateToProductPage($twig, $form);
     }
 
     /**
@@ -148,6 +148,15 @@ class Products extends Module
             ->sortBy('alternative_description')
             ->all()
         ;
+    }
+
+    /**
+     * Manage the information in a specific tab of Product Page.
+     * @param type $hookParams
+     */
+    public function hookDisplayAdminProductsExtra(&$hookParams)
+    {
+        return $this->get('twig')->render('@PrestaShop/Products/module_panel.html.twig');
     }
 
     /**

@@ -30,5 +30,6 @@ class Hooks
         'displayAdminProductsSeoStepBottom',
         'displayAdminProductsOptionsStepTop',
         'displayAdminProductsOptionsStepBottom',
+        'displayAdminProductsExtra',
     ];
 }
