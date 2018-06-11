@@ -27,6 +27,7 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use PsDay\Hooks as ProductHooks;
+use PsDay\AlternativeDescription;
 
 /**
  * Module to present how Prestashop developers
@@ -66,6 +67,7 @@ class Products extends Module
         return parent::install()
             && $this->registerHook($this->productHooks)
             && $this->registerHook('actionAdminControllerSetMedia')
+            && AlternativeDescription::addToProductTable()
         ;
     }
 
@@ -79,6 +81,7 @@ class Products extends Module
         return parent::uninstall()
             && $this->unregisterHook($this->productHooks)
             && $this->unregisterHook('actionAdminControllerSetMedia')
+            && AlternativeDescription::removeToProductTable()
         ;
     }
 
@@ -86,6 +89,7 @@ class Products extends Module
      * @param $hookParams
      *
      * Helper to inject some styles in Back Office.
+     * @return string|void
      */
     public function hookActionAdminControllerSetMedia(&$hookParams)
     {
@@ -95,10 +99,38 @@ class Products extends Module
     }
 
     /**
+     * Display "alternative" in Product page.
+     * @param type $hookParams
+     * @return string
+     */
+    public function hookDisplayAdminProductsMainStepLeftColumnMiddle($hookParams) {
+        $productId = $hookParams['id_product'];
+        $formFactory = $this->get('form.factory');
+        $twig = $this->get('twig');
+
+
+        $form = AlternativeDescription::addToForm($productId, $formFactory);
+
+        // You don't need to design your form, call only form_row(my_field) in
+        // your template.
+        AlternativeDescription::setTemplateToProductPage($twig, $form);
+    }
+
+    /**
+     * Add the field "alternative_description to Product table.
+     * @return string|void
+     */
+    public function hookActionDispatcherBefore()
+    {
+        AlternativeDescription::addToProductDefinition();
+    }
+
+    /**
      * Every Hook non registered will display a block to localize it in UI.
-     * 
+     *
      * @param string $name the function name.
      * @param string $arguments the function arguments if any.
+     * @return string|void
      */
     public function __call($name, $arguments = null) {
         if ($name == 'hookDisplayOverrideTemplate') {
