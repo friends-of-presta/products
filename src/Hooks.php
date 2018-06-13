@@ -20,7 +20,6 @@ class Hooks
 
     const PRODUCT_FORM_HOOKS = [
         'actionDispatcherBefore',
-        'displayProductPageDrawer',
         'displayAdminProductsMainStepLeftColumnMiddle',
         'displayAdminProductsMainStepLeftColumnBottom',
         'displayAdminProductsMainStepRightColumnBottom',
