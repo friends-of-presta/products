@@ -67,7 +67,6 @@ class Products extends Module
         return parent::install()
             && AlternativeDescription::addToProductTable()
             && $this->registerHook($this->productHooks)
-            && $this->registerHook('actionAdminControllerSetMedia')
         ;
     }
 
@@ -81,21 +80,7 @@ class Products extends Module
         return parent::uninstall()
             && AlternativeDescription::removeToProductTable()
             && $this->unregisterHook($this->productHooks)
-            && $this->unregisterHook('actionAdminControllerSetMedia')
         ;
-    }
-
-    /**
-     * @param $hookParams
-     *
-     * Helper to inject some styles in Back Office.
-     * @return string|void
-     */
-    public function hookActionAdminControllerSetMedia(&$hookParams)
-    {
-        $this->context->controller->addCSS($this->_path.'public/css/hook_block.css');
-
-        return $this->__call('actionAdminControllerSetMedia', $hookParams);
     }
 
     /**
@@ -158,23 +143,5 @@ class Products extends Module
     public function hookDisplayAdminProductsExtra(&$hookParams)
     {
         return $this->get('twig')->render('@PrestaShop/Products/module_panel.html.twig');
-    }
-
-    /**
-     * Every Hook non registered will display a block to localize it in UI.
-     *
-     * @param string $name the function name.
-     * @param string $arguments the function arguments if any.
-     * @return string|void
-     */
-    public function __call($name, $arguments = null)
-    {
-        if ($name == 'hookDisplayOverrideTemplate') {
-            return;
-        }
-
-        $this->context->smarty->assign('name', $name);
-
-        return $this->display(__FILE__, 'views/templates/hook_block.tpl');
     }
 }
