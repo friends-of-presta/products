@@ -63,7 +63,6 @@ class Products extends Module
     {
         return parent::uninstall()
             && AlternativeDescription::removeToProductTable()
-            && $this->unregisterHook($this->productHooks)
         ;
     }
 
